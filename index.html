@@ -10,7 +10,13 @@
     html {
       scroll-behavior: smooth;
     }
-
+<h1 id="slideBox">TEST SLIDE</h1>
+    <script>
+setInterval(() => {
+  document.getElementById("slideBox").innerText =
+  "Slide Time: " + new Date().toLocaleTimeString();
+}, 2000);
+</script>
     body {
       margin: 0;
       font-family: Arial;
@@ -30,7 +36,7 @@
     }
 
     .nav a {
-      color: white;
+      color: green;
       text-decoration: none;
       font-size: 14px;
     }
