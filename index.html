@@ -2,23 +2,34 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smart Sanitation MSME Project</title>
+<title>Sanitation Awareness Project</title>
 
 <style>
-body { margin:0; font-family: Arial; }
-section { padding:60px 20px; }
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f7f8;
+}
 
 /* NAV */
-.nav {
-  position:fixed; top:0; width:100%;
-  background:#0d47a1;
-  display:flex; justify-content:center;
-  gap:15px; padding:10px;
+.nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:#00695c;
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  padding:10px;
 }
-.nav a { color:white; text-decoration:none; }
+.nav a{
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
 
 /* HOME */
-#home {
+.home{
   height:100vh;
   background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
   url("img1.jpg") center/cover;
@@ -27,40 +38,56 @@ section { padding:60px 20px; }
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  text-align:center;
 }
 
 /* SLIDER */
-.slider {
-  width:300px;
-  overflow:hidden;
+.slider{
+  width:90%;
   margin:auto;
+  overflow:hidden;
+  border-radius:10px;
 }
-.slides {
+.slides{
   display:flex;
   transition:0.5s;
 }
-.slides img {
-  width:300px; height:200px;
+.slides img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
 }
 
-/* BOX */
-.boxes {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-.box {
-  width:150px;
-  margin:10px;
+/* BLOCKS */
+.blocks{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
   padding:20px;
-  background:#f1f1f1;
-  border-radius:10px;
 }
 
-/* INPUT */
-input, button {
-  padding:10px;
-  margin:5px;
+.block{
+  background:linear-gradient(135deg,#00c853,#64dd17);
+  color:white;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  font-weight:bold;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+  transition:0.3s;
+}
+.block:hover{
+  transform:scale(1.05);
+}
+
+/* SPECIAL COLORS */
+.block:nth-child(2){background:linear-gradient(135deg,#2196f3,#03a9f4);}
+.block:nth-child(3){background:linear-gradient(135deg,#ff9800,#ff5722);}
+.block:nth-child(4){background:linear-gradient(135deg,#9c27b0,#e91e63);}
+
+/* SECTIONS */
+section{
+  padding:60px 20px;
 }
 </style>
 </head>
@@ -70,38 +97,20 @@ input, button {
 <!-- NAV -->
 <div class="nav">
 <a href="#home">Home</a>
-<a href="#login">Login</a>
 <a href="#slider">Gallery</a>
 <a href="#blocks">Features</a>
-<a href="#feedback">Feedback</a>
-<a href="#dashboard">Dashboard</a>
+<a href="#hygiene">Hygiene</a>
 </div>
 
 <!-- HOME -->
-<section id="home">
-<h1>Smart Sanitation System</h1>
-<p>CSP / MSME Project</p>
-</section>
-
-<!-- LOGIN + LANGUAGE -->
-<section id="login">
-<h2>Login / Guest</h2>
-
-<input id="email" placeholder="Enter Email"><br>
-
-<button onclick="loginEmail()">Login</button>
-<button onclick="guestLogin()">Guest</button>
-
-<h3>Language</h3>
-<button onclick="setLang('en')">English</button>
-<button onclick="setLang('te')">తెలుగు</button>
-
-<p id="status"></p>
+<section id="home" class="home">
+<h1>Sanitation Awareness Project</h1>
+<p>Clean India • Healthy Life</p>
 </section>
 
 <!-- SLIDER -->
 <section id="slider">
-<h2>Image Gallery</h2>
+<h2 style="text-align:center;">Gallery</h2>
 
 <div class="slider">
 <div class="slides" id="slideBox">
@@ -113,128 +122,39 @@ input, button {
 </div>
 </section>
 
-<!-- FEATURES -->
+<!-- BLOCKS -->
 <section id="blocks">
-<h2>Features</h2>
+<h2 style="text-align:center;">Our Features</h2>
 
-<div class="boxes">
-<div class="box">Images</div>
-<div class="box">Videos</div>
-<div class="box">Projects</div>
-<div class="box">Feedback</div>
+<div class="blocks">
+<div class="block">📷 Images</div>
+<div class="block">🎥 Videos</div>
+<div class="block">📊 Project</div>
+<div class="block">💬 Feedback</div>
 </div>
 </section>
 
-<!-- FEEDBACK -->
-<section id="feedback">
-<h2>Feedback</h2>
-
-<input id="name" placeholder="Name"><br>
-<input id="msg" placeholder="Message"><br>
-
-<button onclick="sendFeedback()">Submit</button>
-</section>
-
-<!-- DASHBOARD -->
-<section id="dashboard">
-<h2>Dashboard</h2>
-
-<p>Users: <span id="users">0</span></p>
-<p>Feedback: <span id="fcount">0</span></p>
-</section>
-
 <!-- HYGIENE -->
-<section>
-<h2>Awareness</h2>
+<section id="hygiene">
+<h2 style="text-align:center;">Hygiene Awareness</h2>
 
-<ul>
-<li>Hand Sanitization 🧴</li>
-<li>Body Hygiene 🚿</li>
-<li>Menstrual Hygiene 🌸</li>
-<li>Clean Environment 🏡</li>
-</ul>
+<div class="blocks">
+<div class="block">🧼 Hand Wash</div>
+<div class="block">🚿 Body Clean</div>
+<div class="block">🌸 Menstrual Care</div>
+<div class="block">🏡 Clean Surroundings</div>
+</div>
 </section>
 
-<!-- FIREBASE -->
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot } 
-from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
-
-const firebaseConfig = {
-apiKey: "AIzaSyC0Jos76V8Vot3AYEAubJ7Tg04EOFywFQ0",
-authDomain: "smart-sanitization-project.firebaseapp.com",
-projectId: "smart-sanitization-project",
-storageBucket: "smart-sanitization-project.firebasestorage.app",
-messagingSenderId: "724851096201",
-appId: "1:724851096201:web:1bfb0f90595382d9982458"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-/* LOGIN */
-window.loginEmail = async function() {
-let email = document.getElementById("email").value;
-if(!email) return alert("Enter email");
-
-await addDoc(collection(db,"users"),{
-type:"email",
-email,
-time:new Date()
-});
-
-document.getElementById("status").innerText="Logged in: "+email;
-}
-
-/* GUEST */
-window.guestLogin = async function() {
-await addDoc(collection(db,"users"),{
-type:"guest",
-email:"guest",
-time:new Date()
-});
-
-document.getElementById("status").innerText="Guest login";
-}
-
-/* LANGUAGE */
-window.setLang = function(l) {
-if(l=="en") document.getElementById("status").innerText="Language: English";
-else document.getElementById("status").innerText="భాష: తెలుగు";
-}
-
-/* FEEDBACK */
-window.sendFeedback = async function() {
-let name=document.getElementById("name").value;
-let msg=document.getElementById("msg").value;
-
-if(!name||!msg) return alert("Fill all");
-
-await addDoc(collection(db,"feedback"),{
-name,msg,time:new Date()
-});
-}
-
-/* COUNTS */
-onSnapshot(collection(db,"users"),snap=>{
-document.getElementById("users").innerText=snap.size;
-});
-
-onSnapshot(collection(db,"feedback"),snap=>{
-document.getElementById("fcount").innerText=snap.size;
-});
-
-/* SLIDER AUTO MOVE */
-let i=0;
+<!-- SLIDER JS -->
+<script>
+let i = 0;
 setInterval(()=>{
-let box=document.getElementById("slideBox");
-i++;
-if(i>3) i=0;
-box.style.transform="translateX(" + (-300*i) + "px)";
-},2000);
-
+  let box = document.getElementById("slideBox");
+  i++;
+  if(i>3) i=0;
+  box.style.transform = "translateX(" + (-100*i) + "%)";
+}, 2000);
 </script>
 
 </body>
