@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Smart Sanitation Project</title>
+  <title>Smart Sanitation & Health Monitoring System</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,7 +14,7 @@
       font-family: Arial;
     }
 
-    /* NAV */
+    /* NAVBAR */
     .nav {
       position: fixed;
       top: 0;
@@ -22,7 +22,8 @@
       background: #0d47a1;
       display: flex;
       justify-content: center;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 15px;
       padding: 10px;
       z-index: 1000;
     }
@@ -85,7 +86,7 @@
       object-fit: cover;
     }
 
-    /* FEEDBACK */
+    /* INPUT */
     input, textarea {
       width: 250px;
       padding: 10px;
@@ -111,13 +112,14 @@
 
 <body>
 
-<!-- NAV -->
+<!-- NAVBAR -->
 <div class="nav">
   <a href="#home">Home</a>
   <a href="#problem">Problem</a>
   <a href="#solution">Solution</a>
   <a href="#features">Features</a>
   <a href="#gallery">Gallery</a>
+  <a href="#overview">Overview</a>
   <a href="#feedback">Feedback</a>
   <a href="#admin">Admin</a>
   <a href="#dashboard">Dashboard</a>
@@ -126,19 +128,23 @@
 <!-- HOME -->
 <section id="home">
   <h1>Smart Sanitation & Health Monitoring System</h1>
-  <p>CSP / MSME Project</p>
+  <p>CSP / MSME Innovative Project</p>
+
+  <a href="#problem">
+    <button>Explore Project</button>
+  </a>
 </section>
 
 <!-- PROBLEM -->
 <section id="problem">
   <h2>Problem Statement</h2>
-  <p>Sanitation issues affect public health in rural and urban areas.</p>
+  <p>Improper sanitation affects public health in rural and urban areas.</p>
 </section>
 
 <!-- SOLUTION -->
 <section id="solution" style="background:#f1f1f1;">
   <h2>Solution</h2>
-  <p>IoT-based smart monitoring system.</p>
+  <p>IoT-based smart monitoring system for hygiene improvement.</p>
 </section>
 
 <!-- FEATURES -->
@@ -147,7 +153,7 @@
   <ul>
     <li>Real-time monitoring</li>
     <li>Low cost system</li>
-    <li>Alert system</li>
+    <li>Automatic alerts</li>
   </ul>
 </section>
 
@@ -163,6 +169,28 @@
       <img src="./img4.jpg">
     </div>
   </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview" style="text-align:center; background:#e8f5e9;">
+  <h2>📌 Project Overview</h2>
+
+  <p style="max-width:700px; margin:auto;">
+    This Smart Sanitation & Health Monitoring System is a CSP/MSME project designed to improve hygiene awareness and monitoring using a simple web-based system.
+  </p>
+
+  <h3>⚙️ Highlights</h3>
+  <ul style="list-style:none;">
+    <li>✔ Feedback system</li>
+    <li>✔ Image slider</li>
+    <li>✔ Admin panel</li>
+    <li>✔ Live dashboard</li>
+  </ul>
+
+  <h3>🔐 System Control</h3>
+  <p>
+    Users can interact and submit feedback. Admin controls system via GitHub repository access and can view all data.
+  </p>
 </section>
 
 <!-- FEEDBACK -->
@@ -184,7 +212,7 @@
   <h2>🛠 Admin Panel</h2>
 
   <button onclick="loadFeedback()" style="padding:10px 20px; background:#0d47a1; color:white; border:none;">
-    Load Feedback
+    View Feedback
   </button>
 
   <div id="adminOutput"></div>
@@ -217,21 +245,19 @@ let index = 0;
 /* SLIDER */
 function slide() {
   const slider = document.getElementById("slider");
-
   index++;
   if(index > 3) index = 0;
-
   slider.style.transform = "translateX(" + (-300 * index) + "px)";
 }
 setInterval(slide, 2500);
 
-/* REAL USER COUNT (VISITS) */
+/* REAL USER COUNT */
 let visits = localStorage.getItem("visits");
 visits = visits ? parseInt(visits) + 1 : 1;
 localStorage.setItem("visits", visits);
 document.getElementById("users").innerText = visits;
 
-/* FEEDBACK SYSTEM */
+/* FEEDBACK */
 function submitFeedback() {
   let name = document.getElementById("name").value;
   let msg = document.getElementById("msg").value;
