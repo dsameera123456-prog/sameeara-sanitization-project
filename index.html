@@ -77,12 +77,13 @@
 
     #slider {
       display: flex;
-      transition: 0.5s ease;
+      transition: transform 0.5s ease;
     }
 
     #slider img {
       width: 300px;
       height: 200px;
+      flex-shrink: 0;
     }
 
     /* DASHBOARD */
@@ -184,10 +185,7 @@ function slideImages() {
   const slider = document.getElementById("slider");
 
   index++;
-
-  if(index > 3) {
-    index = 0;
-  }
+  if (index > 3) index = 0;
 
   slider.style.transform = "translateX(" + (-300 * index) + "px)";
 }
