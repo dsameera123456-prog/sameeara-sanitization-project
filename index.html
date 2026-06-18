@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Smart Sanitation MSME Project</title>
+  <title>Smart Sanitation Project</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -45,8 +44,8 @@
 
   <input id="email" placeholder="Enter Email"><br>
 
-  <button onclick="emailLogin()">Login with Email</button>
-  <button onclick="guestLogin()">Continue as Guest</button>
+  <button onclick="emailLogin()">Login</button>
+  <button onclick="guestLogin()">Guest</button>
 
   <p id="status"></p>
 </section>
@@ -67,11 +66,9 @@
   <input id="msg" placeholder="Message"><br>
 
   <button onclick="sendFeedback()">Submit</button>
-
-  <div id="list"></div>
 </section>
 
-<!-- FIREBASE MODULE -->
+<!-- FIREBASE ONLY (IMPORTANT FIXED VERSION) -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
@@ -90,35 +87,37 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-/* USER COUNT STORAGE */
-async function addUser(type, email="guest") {
+/* LOGIN */
+window.emailLogin = async function() {
+  let email = document.getElementById("email").value;
+  if(!email) return alert("Enter email");
+
   await addDoc(collection(db, "users"), {
-    type,
-    email,
+    type: "email",
+    email: email,
     time: new Date()
   });
-}
 
-/* LOGIN EMAIL */
-window.emailLogin = function() {
-  let email = document.getElementById("email").value;
-
-  if(email === "") return alert("Enter email");
-
-  addUser("email", email);
   document.getElementById("status").innerText = "Logged in: " + email;
 }
 
-/* GUEST LOGIN */
-window.guestLogin = function() {
-  addUser("guest", "guest");
-  document.getElementById("status").innerText = "Guest Login Success";
+/* GUEST */
+window.guestLogin = async function() {
+  await addDoc(collection(db, "users"), {
+    type: "guest",
+    email: "guest",
+    time: new Date()
+  });
+
+  document.getElementById("status").innerText = "Guest login success";
 }
 
 /* FEEDBACK */
 window.sendFeedback = async function() {
   let name = document.getElementById("name").value;
   let msg = document.getElementById("msg").value;
+
+  if(!name || !msg) return alert("Fill all fields");
 
   await addDoc(collection(db, "feedback"), {
     name,
@@ -129,7 +128,7 @@ window.sendFeedback = async function() {
   alert("Feedback sent!");
 }
 
-/* LIVE DASHBOARD */
+/* LIVE COUNTS */
 onSnapshot(collection(db, "users"), (snap) => {
   document.getElementById("users").innerText = snap.size;
 });
