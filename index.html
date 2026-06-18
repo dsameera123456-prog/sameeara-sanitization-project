@@ -2,313 +2,146 @@
 <html>
 
 <head>
-  <title>Smart Sanitation & Health Monitoring System</title>
-
+  <title>Smart Sanitation System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Arial;
-    }
-
-    /* NAVBAR */
+    body { font-family: Arial; margin:0; }
+    section { padding:60px 20px; }
     .nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #0d47a1;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      padding: 10px;
-      z-index: 1000;
+      position:fixed; top:0; width:100%;
+      background:#0d47a1; padding:10px;
+      display:flex; justify-content:center; gap:15px;
     }
+    .nav a { color:white; text-decoration:none; }
 
-    .nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    section {
-      padding: 70px 20px;
-    }
-
-    /* HOME */
-    #home {
-      height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-      url('./img1.jpg') center/cover;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    #home button {
-      padding: 10px 20px;
-      background: #00c853;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      margin-top: 15px;
-      cursor: pointer;
-    }
-
-    /* GALLERY */
-    #gallery {
-      text-align: center;
-      background: #e3f2fd;
-    }
-
-    #wrapper {
-      width: 300px;
-      margin: auto;
-      overflow: hidden;
-      border-radius: 10px;
-    }
-
-    #slider {
-      display: flex;
-      transition: transform 0.6s ease;
-    }
-
-    #slider img {
-      width: 300px;
-      height: 200px;
-      flex-shrink: 0;
-      object-fit: cover;
-    }
-
-    /* INPUT */
-    input, textarea {
-      width: 250px;
-      padding: 10px;
-      margin: 5px;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    /* BOX */
-    .box {
-      display: inline-block;
-      background: #f1f1f1;
-      padding: 20px;
-      margin: 10px;
-      border-radius: 10px;
-      width: 150px;
-    }
-
+    input, button { padding:10px; margin:5px; }
+    #home { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#e3f2fd; }
   </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <div class="nav">
   <a href="#home">Home</a>
-  <a href="#problem">Problem</a>
-  <a href="#solution">Solution</a>
-  <a href="#features">Features</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#overview">Overview</a>
-  <a href="#feedback">Feedback</a>
-  <a href="#admin">Admin</a>
+  <a href="#login">Login</a>
   <a href="#dashboard">Dashboard</a>
+  <a href="#feedback">Feedback</a>
 </div>
 
 <!-- HOME -->
 <section id="home">
-  <h1>Smart Sanitation & Health Monitoring System</h1>
-  <p>CSP / MSME Innovative Project</p>
-
-  <a href="#problem">
-    <button>Explore Project</button>
-  </a>
+  <h1>Smart Sanitation Project</h1>
+  <p>CSP / MSME Project</p>
 </section>
 
-<!-- PROBLEM -->
-<section id="problem">
-  <h2>Problem Statement</h2>
-  <p>Improper sanitation affects public health in rural and urban areas.</p>
-</section>
+<!-- LOGIN -->
+<section id="login">
+  <h2>Login / Guest Access</h2>
 
-<!-- SOLUTION -->
-<section id="solution" style="background:#f1f1f1;">
-  <h2>Solution</h2>
-  <p>IoT-based smart monitoring system for hygiene improvement.</p>
-</section>
+  <input id="email" placeholder="Enter Email"><br>
 
-<!-- FEATURES -->
-<section id="features">
-  <h2>Features</h2>
-  <ul>
-    <li>Real-time monitoring</li>
-    <li>Low cost system</li>
-    <li>Automatic alerts</li>
-  </ul>
-</section>
+  <button onclick="emailLogin()">Login with Email</button>
+  <button onclick="guestLogin()">Continue as Guest</button>
 
-<!-- GALLERY -->
-<section id="gallery">
-  <h2>📸 Project Gallery</h2>
-
-  <div id="wrapper">
-    <div id="slider">
-      <img src="./img1.jpg">
-      <img src="./img2.jpg">
-      <img src="./img3.jpg">
-      <img src="./img4.jpg">
-    </div>
-  </div>
-</section>
-
-<!-- OVERVIEW -->
-<section id="overview" style="text-align:center; background:#e8f5e9;">
-  <h2>📌 Project Overview</h2>
-
-  <p style="max-width:700px; margin:auto;">
-    This Smart Sanitation & Health Monitoring System is a CSP/MSME project designed to improve hygiene awareness and monitoring using a simple web-based system.
-  </p>
-
-  <h3>⚙️ Highlights</h3>
-  <ul style="list-style:none;">
-    <li>✔ Feedback system</li>
-    <li>✔ Image slider</li>
-    <li>✔ Admin panel</li>
-    <li>✔ Live dashboard</li>
-  </ul>
-
-  <h3>🔐 System Control</h3>
-  <p>
-    Users can interact and submit feedback. Admin controls system via GitHub repository access and can view all data.
-  </p>
-</section>
-
-<!-- FEEDBACK -->
-<section id="feedback" style="text-align:center; background:#f1f1f1;">
-  <h2>💬 Feedback Section</h2>
-
-  <input id="name" placeholder="Your Name"><br>
-  <textarea id="msg" placeholder="Your Feedback"></textarea><br>
-
-  <button onclick="submitFeedback()" style="padding:10px 20px; background:green; color:white; border:none;">
-    Submit
-  </button>
-
-  <div id="output"></div>
-</section>
-
-<!-- ADMIN -->
-<section id="admin" style="text-align:center; background:#fff3e0;">
-  <h2>🛠 Admin Panel</h2>
-
-  <button onclick="loadFeedback()" style="padding:10px 20px; background:#0d47a1; color:white; border:none;">
-    View Feedback
-  </button>
-
-  <div id="adminOutput"></div>
+  <p id="status"></p>
 </section>
 
 <!-- DASHBOARD -->
-<section id="dashboard" style="text-align:center;">
+<section id="dashboard">
   <h2>Live Dashboard</h2>
 
-  <div class="box">
-    <h3>👥 Users</h3>
-    <p id="users">0</p>
-  </div>
-
-  <div class="box">
-    <h3>💬 Feedback</h3>
-    <p id="feedbackCount">0</p>
-  </div>
-
-  <div class="box">
-    <h3>🟢 Status</h3>
-    <p style="color:green;">Active</p>
-  </div>
+  <p>👥 Total Users: <span id="users">0</span></p>
+  <p>💬 Feedback: <span id="fcount">0</span></p>
 </section>
 
+<!-- FEEDBACK -->
+<section id="feedback">
+  <h2>Feedback</h2>
+
+  <input id="name" placeholder="Name"><br>
+  <input id="msg" placeholder="Message"><br>
+
+  <button onclick="sendFeedback()">Submit</button>
+
+  <div id="list"></div>
+</section>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+
 <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyC0Jos76V8Vot3AYEAubYEAubJ7Tg04EOFywFQ0",
+  authDomain: "smart-sanitization-project.firebaseapp.com",
+  projectId: "smart-sanitization-project",
+  storageBucket: "smart-sanitization-project.firebasestorage.app",
+  messagingSenderId: "724851096201",
+  appId: "1:724851096201:web:1bfb0f90595382d9982458",
+  measurementId: "G-LWYFQMP1JH"
+};
 
-let index = 0;
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-/* SLIDER */
-function slide() {
-  const slider = document.getElementById("slider");
-  index++;
-  if(index > 3) index = 0;
-  slider.style.transform = "translateX(" + (-300 * index) + "px)";
+/* USERS COLLECTION */
+function addUser(type, email="guest") {
+  db.collection("users").add({
+    type: type,
+    email: email,
+    time: new Date()
+  });
 }
-setInterval(slide, 2500);
 
-/* REAL USER COUNT */
-let visits = localStorage.getItem("visits");
-visits = visits ? parseInt(visits) + 1 : 1;
-localStorage.setItem("visits", visits);
-document.getElementById("users").innerText = visits;
+/* EMAIL LOGIN */
+function emailLogin() {
+  let email = document.getElementById("email").value;
+
+  if(email === "") {
+    alert("Enter email");
+    return;
+  }
+
+  addUser("email", email);
+  document.getElementById("status").innerText = "Logged in as " + email;
+}
+
+/* GUEST LOGIN */
+function guestLogin() {
+  addUser("guest", "guest");
+  document.getElementById("status").innerText = "Logged in as Guest";
+}
 
 /* FEEDBACK */
-function submitFeedback() {
+function sendFeedback() {
   let name = document.getElementById("name").value;
   let msg = document.getElementById("msg").value;
 
-  if(name === "" || msg === "") {
-    alert("Please fill all fields");
-    return;
-  }
-
-  let data = JSON.parse(localStorage.getItem("feedbacks")) || [];
-
-  data.push({ name, msg });
-
-  localStorage.setItem("feedbacks", JSON.stringify(data));
-
-  document.getElementById("name").value = "";
-  document.getElementById("msg").value = "";
-
-  updateFeedbackCount();
-}
-
-/* FEEDBACK COUNT */
-function updateFeedbackCount() {
-  let data = JSON.parse(localStorage.getItem("feedbacks")) || [];
-  document.getElementById("feedbackCount").innerText = data.length;
-}
-updateFeedbackCount();
-
-/* ADMIN PANEL */
-function loadFeedback() {
-  let data = JSON.parse(localStorage.getItem("feedbacks")) || [];
-
-  let out = document.getElementById("adminOutput");
-  out.innerHTML = "";
-
-  if(data.length === 0) {
-    out.innerHTML = "<p>No feedback yet</p>";
-    return;
-  }
-
-  data.forEach((item, i) => {
-    let div = document.createElement("div");
-    div.style.padding = "10px";
-    div.style.margin = "10px auto";
-    div.style.width = "250px";
-    div.style.background = "#e3f2fd";
-
-    div.innerHTML = "<b>" + (i+1) + ". " + item.name + "</b><br>" + item.msg;
-    out.appendChild(div);
+  db.collection("feedback").add({
+    name: name,
+    msg: msg,
+    time: new Date()
   });
+
+  alert("Feedback sent!");
 }
+
+/* LOAD DATA */
+function loadData() {
+
+  db.collection("users").onSnapshot(snap => {
+    document.getElementById("users").innerText = snap.size;
+  });
+
+  db.collection("feedback").onSnapshot(snap => {
+    document.getElementById("fcount").innerText = snap.size;
+  });
+
+}
+loadData();
 
 </script>
 
