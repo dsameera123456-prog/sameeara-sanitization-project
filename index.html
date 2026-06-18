@@ -1,49 +1,200 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Smart Sanitation Project</title>
+  <title>Smart Sanitation & Health Project</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     html {
       scroll-behavior: smooth;
     }
+
+    body {
+      margin: 0;
+      font-family: Arial;
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #0d47a1;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      z-index: 1000;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 60px 20px;
+    }
+
+    /* HOME */
+    #home {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+      url('https://images.unsplash.com/photo-1580281658628-5a4c3c1b8f2c') center/cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    #home button {
+      padding: 10px 20px;
+      background: #00c853;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    /* SLIDES */
+    #slideBox {
+      background: #f1f1f1;
+      padding: 20px;
+      border-radius: 10px;
+      min-height: 80px;
+    }
+
+    /* DASHBOARD */
+    .box {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 10px;
+      display: inline-block;
+      width: 150px;
+    }
+
   </style>
-
 </head>
-<div style="
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  background:#0d47a1;
-  padding:10px;
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  z-index:1000;
-">
 
-  <a href="#home" style="color:white; text-decoration:none;">Home</a>
-  <a href="#problem" style="color:white; text-decoration:none;">Problem</a>
-  <a href="#solution" style="color:white; text-decoration:none;">Solution</a>
-  <a href="#features" style="color:white; text-decoration:none;">Features</a>
-  <a href="#contact" style="color:white; text-decoration:none;">Contact</a>
+<body>
 
+<!-- NAVBAR -->
+<div class="nav">
+  <a href="#home">Home</a>
+  <a href="#problem">Problem</a>
+  <a href="#solution">Solution</a>
+  <a href="#features">Features</a>
+  <a href="#slides">Slides</a>
+  <a href="#dashboard">Dashboard</a>
+  <a href="#contact">Contact</a>
 </div>
 
-<header style="height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;">
-  <h1>Home Page</h1>
+<!-- HOME -->
+<section id="home">
+  <h1>Smart Sanitation & Health Monitoring System</h1>
+  <p>CSP / MSME Innovative Project</p>
 
   <a href="#problem">
-    <button style="padding:10px 20px; background:green; color:white;">
-      Go to Problem
-    </button>
+    <button>Explore Project</button>
   </a>
-</header>
-
-<section id="problem" style="height:100vh; background:#f1f1f1;">
-  <h1>Problem Section</h1>
 </section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <h2>Problem Statement</h2>
+  <p>Improper sanitation and hygiene issues affect public health in rural and urban areas.</p>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution" style="background:#f1f1f1;">
+  <h2>Solution</h2>
+  <p>IoT-based smart system for monitoring sanitation and improving hygiene conditions.</p>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <h2>Features</h2>
+  <ul>
+    <li>Real-time monitoring</li>
+    <li>Low cost system</li>
+    <li>Alert notifications</li>
+  </ul>
+</section>
+
+<!-- SLIDES -->
+<section id="slides" style="background:#e3f2fd;">
+  <h2>Project Highlights</h2>
+  <div id="slideBox">Loading...</div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" style="text-align:center;">
+  <h2>Live Dashboard</h2>
+
+  <div class="box">
+    <h3>👥 Users</h3>
+    <p id="users">0</p>
+  </div>
+
+  <div class="box">
+    <h3>💬 Feedback</h3>
+    <p id="feedback">0</p>
+  </div>
+
+  <div class="box">
+    <h3>🟢 Status</h3>
+    <p style="color:green;">Active</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:#f1f1f1;">
+  <h2>Contact</h2>
+  <p>Email: example@gmail.com</p>
+</section>
+
+<script>
+
+let slides = [
+  "🚨 Problem: Sanitation issues affect health",
+  "💡 Solution: Smart IoT monitoring system",
+  "⚙️ Feature: Low cost & real-time alerts",
+  "📢 Awareness: Clean environment = Healthy life"
+];
+
+let i = 0;
+
+function showSlide() {
+  document.getElementById("slideBox").innerText = slides[i];
+  i = (i + 1) % slides.length;
+}
+
+setInterval(showSlide, 3000);
+showSlide();
+
+/* USERS COUNTER */
+let u = 0;
+setInterval(() => {
+  u++;
+  document.getElementById("users").innerText = u;
+}, 2000);
+
+/* FEEDBACK DEMO COUNTER */
+let f = 0;
+setInterval(() => {
+  f++;
+  document.getElementById("feedback").innerText = f;
+}, 4000);
+
+</script>
 
 </body>
 </html>
