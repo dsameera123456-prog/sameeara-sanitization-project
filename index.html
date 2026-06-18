@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Smart Sanitation Project</title>
+  <title>Smart Sanitation & Health Project</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,6 +14,7 @@
       font-family: Arial;
     }
 
+    /* NAVBAR */
     .nav {
       position: fixed;
       top: 0;
@@ -33,9 +34,10 @@
     }
 
     section {
-      padding: 60px 20px;
+      padding: 70px 20px;
     }
 
+    /* HOME */
     #home {
       height: 100vh;
       background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
@@ -46,6 +48,22 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+    }
+
+    #home button {
+      padding: 10px 20px;
+      background: #00c853;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    /* GALLERY */
+    #gallery {
+      text-align: center;
+      background: #e3f2fd;
     }
 
     #wrapper {
@@ -67,6 +85,18 @@
       object-fit: cover;
     }
 
+    /* FEEDBACK */
+    input, textarea {
+      width: 250px;
+      padding: 10px;
+      margin: 5px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* DASHBOARD */
     .box {
       display: inline-block;
       background: #f1f1f1;
@@ -81,32 +111,37 @@
 
 <body>
 
-<!-- NAV -->
+<!-- NAVBAR -->
 <div class="nav">
   <a href="#home">Home</a>
   <a href="#problem">Problem</a>
   <a href="#solution">Solution</a>
   <a href="#features">Features</a>
   <a href="#gallery">Gallery</a>
+  <a href="#feedback">Feedback</a>
   <a href="#dashboard">Dashboard</a>
 </div>
 
 <!-- HOME -->
 <section id="home">
-  <h1>Smart Sanitation & Health Monitoring</h1>
-  <p>CSP / MSME Project</p>
+  <h1>Smart Sanitation & Health Monitoring System</h1>
+  <p>CSP / MSME Innovative Project</p>
+
+  <a href="#problem">
+    <button>Explore Project</button>
+  </a>
 </section>
 
 <!-- PROBLEM -->
 <section id="problem">
-  <h2>Problem</h2>
-  <p>Sanitation issues affect public health in rural areas.</p>
+  <h2>Problem Statement</h2>
+  <p>Improper sanitation affects public health in rural and urban areas.</p>
 </section>
 
 <!-- SOLUTION -->
-<section id="solution">
+<section id="solution" style="background:#f1f1f1;">
   <h2>Solution</h2>
-  <p>Smart IoT-based monitoring system.</p>
+  <p>IoT-based smart monitoring system for hygiene improvement.</p>
 </section>
 
 <!-- FEATURES -->
@@ -115,36 +150,55 @@
   <ul>
     <li>Real-time monitoring</li>
     <li>Low cost system</li>
-    <li>Alerts system</li>
+    <li>Automatic alerts</li>
   </ul>
 </section>
 
 <!-- GALLERY -->
-<section id="gallery" style="text-align:center; background:#e3f2fd;">
+<section id="gallery">
   <h2>📸 Project Gallery</h2>
 
   <div id="wrapper">
     <div id="slider">
-      <img src="./img1.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Image+1'">
-      <img src="./img2.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Image+2'">
-      <img src="./img3.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Image+3'">
-      <img src="./img4.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Image+4'">
+      <img src="./img1.jpg">
+      <img src="./img2.jpg">
+      <img src="./img3.jpg">
+      <img src="./img4.jpg">
     </div>
   </div>
 </section>
 
+<!-- FEEDBACK -->
+<section id="feedback" style="text-align:center; background:#f1f1f1;">
+  <h2>💬 Feedback Section</h2>
+
+  <input id="name" placeholder="Your Name"><br>
+  <textarea id="msg" placeholder="Your Feedback"></textarea><br>
+
+  <button onclick="submitFeedback()" style="padding:10px 20px; background:green; color:white; border:none;">
+    Submit
+  </button>
+
+  <div id="output" style="margin-top:20px;"></div>
+</section>
+
 <!-- DASHBOARD -->
 <section id="dashboard" style="text-align:center;">
-  <h2>Dashboard</h2>
+  <h2>Live Dashboard</h2>
 
   <div class="box">
-    <h3>Users</h3>
+    <h3>👥 Users</h3>
     <p id="users">0</p>
   </div>
 
   <div class="box">
-    <h3>Feedback</h3>
-    <p id="feedback">0</p>
+    <h3>💬 Feedback</h3>
+    <p id="feedbackCount">0</p>
+  </div>
+
+  <div class="box">
+    <h3>🟢 Status</h3>
+    <p style="color:green;">Active</p>
   </div>
 </section>
 
@@ -152,7 +206,7 @@
 
 let index = 0;
 
-function slide() {
+function slideImages() {
   const slider = document.getElementById("slider");
 
   index++;
@@ -161,18 +215,42 @@ function slide() {
   slider.style.transform = "translateX(" + (-300 * index) + "px)";
 }
 
-setInterval(slide, 2500);
+setInterval(slideImages, 2500);
 
-/* COUNTERS */
+/* USERS COUNTER */
 let u = 0;
 setInterval(() => {
   document.getElementById("users").innerText = ++u;
 }, 2000);
 
+/* FEEDBACK COUNTER */
 let f = 0;
 setInterval(() => {
-  document.getElementById("feedback").innerText = ++f;
+  document.getElementById("feedbackCount").innerText = ++f;
 }, 4000);
+
+/* FEEDBACK FORM */
+function submitFeedback() {
+  let name = document.getElementById("name").value;
+  let msg = document.getElementById("msg").value;
+
+  if(name === "" || msg === "") {
+    alert("Please fill all fields");
+    return;
+  }
+
+  let div = document.createElement("div");
+  div.style.padding = "10px";
+  div.style.margin = "10px auto";
+  div.style.width = "250px";
+  div.style.background = "#e3f2fd";
+  div.innerHTML = "<b>" + name + "</b><br>" + msg;
+
+  document.getElementById("output").appendChild(div);
+
+  document.getElementById("name").value = "";
+  document.getElementById("msg").value = "";
+}
 
 </script>
 
