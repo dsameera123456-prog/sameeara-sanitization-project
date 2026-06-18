@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Smart Sanitation & Health Project</title>
+  <title>Smart Sanitation Project</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,7 +14,7 @@
       font-family: Arial;
     }
 
-    /* NAVBAR */
+    /* NAV */
     .nav {
       position: fixed;
       top: 0;
@@ -96,7 +96,7 @@
       cursor: pointer;
     }
 
-    /* DASHBOARD */
+    /* BOX */
     .box {
       display: inline-block;
       background: #f1f1f1;
@@ -111,7 +111,7 @@
 
 <body>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <div class="nav">
   <a href="#home">Home</a>
   <a href="#problem">Problem</a>
@@ -119,29 +119,26 @@
   <a href="#features">Features</a>
   <a href="#gallery">Gallery</a>
   <a href="#feedback">Feedback</a>
+  <a href="#admin">Admin</a>
   <a href="#dashboard">Dashboard</a>
 </div>
 
 <!-- HOME -->
 <section id="home">
   <h1>Smart Sanitation & Health Monitoring System</h1>
-  <p>CSP / MSME Innovative Project</p>
-
-  <a href="#problem">
-    <button>Explore Project</button>
-  </a>
+  <p>CSP / MSME Project</p>
 </section>
 
 <!-- PROBLEM -->
 <section id="problem">
   <h2>Problem Statement</h2>
-  <p>Improper sanitation affects public health in rural and urban areas.</p>
+  <p>Sanitation issues affect public health in rural and urban areas.</p>
 </section>
 
 <!-- SOLUTION -->
 <section id="solution" style="background:#f1f1f1;">
   <h2>Solution</h2>
-  <p>IoT-based smart monitoring system for hygiene improvement.</p>
+  <p>IoT-based smart monitoring system.</p>
 </section>
 
 <!-- FEATURES -->
@@ -150,7 +147,7 @@
   <ul>
     <li>Real-time monitoring</li>
     <li>Low cost system</li>
-    <li>Automatic alerts</li>
+    <li>Alert system</li>
   </ul>
 </section>
 
@@ -179,7 +176,18 @@
     Submit
   </button>
 
-  <div id="output" style="margin-top:20px;"></div>
+  <div id="output"></div>
+</section>
+
+<!-- ADMIN -->
+<section id="admin" style="text-align:center; background:#fff3e0;">
+  <h2>🛠 Admin Panel</h2>
+
+  <button onclick="loadFeedback()" style="padding:10px 20px; background:#0d47a1; color:white; border:none;">
+    Load Feedback
+  </button>
+
+  <div id="adminOutput"></div>
 </section>
 
 <!-- DASHBOARD -->
@@ -206,7 +214,8 @@
 
 let index = 0;
 
-function slideImages() {
+/* SLIDER */
+function slide() {
   const slider = document.getElementById("slider");
 
   index++;
@@ -214,22 +223,15 @@ function slideImages() {
 
   slider.style.transform = "translateX(" + (-300 * index) + "px)";
 }
+setInterval(slide, 2500);
 
-setInterval(slideImages, 2500);
+/* REAL USER COUNT (VISITS) */
+let visits = localStorage.getItem("visits");
+visits = visits ? parseInt(visits) + 1 : 1;
+localStorage.setItem("visits", visits);
+document.getElementById("users").innerText = visits;
 
-/* USERS COUNTER */
-let u = 0;
-setInterval(() => {
-  document.getElementById("users").innerText = ++u;
-}, 2000);
-
-/* FEEDBACK COUNTER */
-let f = 0;
-setInterval(() => {
-  document.getElementById("feedbackCount").innerText = ++f;
-}, 4000);
-
-/* FEEDBACK FORM */
+/* FEEDBACK SYSTEM */
 function submitFeedback() {
   let name = document.getElementById("name").value;
   let msg = document.getElementById("msg").value;
@@ -239,17 +241,47 @@ function submitFeedback() {
     return;
   }
 
-  let div = document.createElement("div");
-  div.style.padding = "10px";
-  div.style.margin = "10px auto";
-  div.style.width = "250px";
-  div.style.background = "#e3f2fd";
-  div.innerHTML = "<b>" + name + "</b><br>" + msg;
+  let data = JSON.parse(localStorage.getItem("feedbacks")) || [];
 
-  document.getElementById("output").appendChild(div);
+  data.push({ name, msg });
+
+  localStorage.setItem("feedbacks", JSON.stringify(data));
 
   document.getElementById("name").value = "";
   document.getElementById("msg").value = "";
+
+  updateFeedbackCount();
+}
+
+/* FEEDBACK COUNT */
+function updateFeedbackCount() {
+  let data = JSON.parse(localStorage.getItem("feedbacks")) || [];
+  document.getElementById("feedbackCount").innerText = data.length;
+}
+updateFeedbackCount();
+
+/* ADMIN PANEL */
+function loadFeedback() {
+  let data = JSON.parse(localStorage.getItem("feedbacks")) || [];
+
+  let out = document.getElementById("adminOutput");
+  out.innerHTML = "";
+
+  if(data.length === 0) {
+    out.innerHTML = "<p>No feedback yet</p>";
+    return;
+  }
+
+  data.forEach((item, i) => {
+    let div = document.createElement("div");
+    div.style.padding = "10px";
+    div.style.margin = "10px auto";
+    div.style.width = "250px";
+    div.style.background = "#e3f2fd";
+
+    div.innerHTML = "<b>" + (i+1) + ". " + item.name + "</b><br>" + item.msg;
+    out.appendChild(div);
+  });
 }
 
 </script>
