@@ -7,16 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: Arial;
     }
 
-    /* NAVBAR */
     .nav {
       position: fixed;
       top: 0;
@@ -39,33 +36,16 @@
       padding: 60px 20px;
     }
 
-    /* HOME */
     #home {
       height: 100vh;
       background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-      url('img1.jpg') center/cover;
+      url('./img1.jpg') center/cover;
       color: white;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-    }
-
-    #home button {
-      padding: 10px 20px;
-      background: #00c853;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      margin-top: 15px;
-      cursor: pointer;
-    }
-
-    /* GALLERY */
-    #gallery {
-      text-align: center;
-      background: #e3f2fd;
     }
 
     #wrapper {
@@ -77,16 +57,16 @@
 
     #slider {
       display: flex;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease;
     }
 
     #slider img {
       width: 300px;
       height: 200px;
       flex-shrink: 0;
+      object-fit: cover;
     }
 
-    /* DASHBOARD */
     .box {
       display: inline-block;
       background: #f1f1f1;
@@ -101,7 +81,7 @@
 
 <body>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <div class="nav">
   <a href="#home">Home</a>
   <a href="#problem">Problem</a>
@@ -113,24 +93,20 @@
 
 <!-- HOME -->
 <section id="home">
-  <h1>Smart Sanitation & Health Monitoring System</h1>
-  <p>CSP / MSME Innovative Project</p>
-
-  <a href="#problem">
-    <button>Explore Project</button>
-  </a>
+  <h1>Smart Sanitation & Health Monitoring</h1>
+  <p>CSP / MSME Project</p>
 </section>
 
 <!-- PROBLEM -->
 <section id="problem">
-  <h2>Problem Statement</h2>
-  <p>Improper sanitation affects public health in rural and urban areas.</p>
+  <h2>Problem</h2>
+  <p>Sanitation issues affect public health in rural areas.</p>
 </section>
 
 <!-- SOLUTION -->
-<section id="solution" style="background:#f1f1f1;">
+<section id="solution">
   <h2>Solution</h2>
-  <p>IoT-based smart monitoring system for hygiene improvement.</p>
+  <p>Smart IoT-based monitoring system.</p>
 </section>
 
 <!-- FEATURES -->
@@ -139,41 +115,36 @@
   <ul>
     <li>Real-time monitoring</li>
     <li>Low cost system</li>
-    <li>Automatic alerts</li>
+    <li>Alerts system</li>
   </ul>
 </section>
 
 <!-- GALLERY -->
-<section id="gallery">
+<section id="gallery" style="text-align:center; background:#e3f2fd;">
   <h2>📸 Project Gallery</h2>
 
   <div id="wrapper">
     <div id="slider">
-      <img src="./img1.jpg">
-      <img src="./img2.jpg">
-      <img src="./img3.jpg">
-      <img src="./img4.jpg">
+      <img src="./img1.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Image+1'">
+      <img src="./img2.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Image+2'">
+      <img src="./img3.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Image+3'">
+      <img src="./img4.jpg" onerror="this.src='https://via.placeholder.com/300x200?text=Image+4'">
     </div>
   </div>
 </section>
 
 <!-- DASHBOARD -->
 <section id="dashboard" style="text-align:center;">
-  <h2>Live Dashboard</h2>
+  <h2>Dashboard</h2>
 
   <div class="box">
-    <h3>👥 Users</h3>
+    <h3>Users</h3>
     <p id="users">0</p>
   </div>
 
   <div class="box">
-    <h3>💬 Feedback</h3>
+    <h3>Feedback</h3>
     <p id="feedback">0</p>
-  </div>
-
-  <div class="box">
-    <h3>🟢 Status</h3>
-    <p style="color:green;">Active</p>
   </div>
 </section>
 
@@ -181,7 +152,7 @@
 
 let index = 0;
 
-function slideImages() {
+function slide() {
   const slider = document.getElementById("slider");
 
   index++;
@@ -190,19 +161,17 @@ function slideImages() {
   slider.style.transform = "translateX(" + (-300 * index) + "px)";
 }
 
-setInterval(slideImages, 2500);
+setInterval(slide, 2500);
 
 /* COUNTERS */
 let u = 0;
 setInterval(() => {
-  u++;
-  document.getElementById("users").innerText = u;
+  document.getElementById("users").innerText = ++u;
 }, 2000);
 
 let f = 0;
 setInterval(() => {
-  f++;
-  document.getElementById("feedback").innerText = f;
+  document.getElementById("feedback").innerText = ++f;
 }, 4000);
 
 </script>
