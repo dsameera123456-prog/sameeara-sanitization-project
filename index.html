@@ -62,12 +62,22 @@
       cursor: pointer;
     }
 
-    /* SLIDER */
-    #slideImg {
+    /* GALLERY */
+    #galleryWrapper {
+      width: 300px;
+      overflow: hidden;
+      margin: auto;
+      border-radius: 10px;
+    }
+
+    #slider {
+      display: flex;
+      transition: 0.5s ease;
+    }
+
+    #slider img {
       width: 300px;
       height: 200px;
-      border-radius: 10px;
-      margin-top: 20px;
     }
 
     /* DASHBOARD */
@@ -108,7 +118,7 @@
 <!-- PROBLEM -->
 <section id="problem">
   <h2>Problem Statement</h2>
-  <p>Improper sanitation affects health in rural and urban areas.</p>
+  <p>Improper sanitation affects public health in rural and urban areas.</p>
 </section>
 
 <!-- SOLUTION -->
@@ -127,11 +137,18 @@
   </ul>
 </section>
 
-<!-- GALLERY (IMAGE SLIDER) -->
+<!-- GALLERY -->
 <section id="gallery" style="text-align:center; background:#e3f2fd;">
   <h2>📸 Project Gallery</h2>
 
-  <img id="slideImg">
+  <div id="galleryWrapper">
+    <div id="slider">
+      <img src="img1.jpg">
+      <img src="img2.jpg">
+      <img src="img3.jpg">
+      <img src="img4.jpg">
+    </div>
+  </div>
 </section>
 
 <!-- DASHBOARD -->
@@ -156,27 +173,20 @@
 
 <script>
 
-html {
-  scroll-behavior: smooth;
+let index = 0;
+
+function slideImages() {
+  const slider = document.getElementById("slider");
+  index++;
+
+  if(index > 3) {
+    index = 0;
+  }
+
+  slider.style.transform = "translateX(" + (-300 * index) + "px)";
 }
 
-/* IMAGE SLIDER */
-let images = [
-  "img1.jpg",
-  "img2.jpg",
-  "img3.jpg",
-  "img4.jpg"
-];
-
-let i = 0;
-
-function changeImage() {
-  document.getElementById("slideImg").src = images[i];
-  i = (i + 1) % images.length;
-}
-
-setInterval(changeImage, 2500);
-changeImage();
+setInterval(slideImages, 2500);
 
 /* USERS COUNTER */
 let u = 0;
