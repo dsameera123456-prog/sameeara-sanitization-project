@@ -10,13 +10,7 @@
     html {
       scroll-behavior: smooth;
     }
-<h1 id="slideBox">TEST SLIDE</h1>
-    <script>
-setInterval(() => {
-  document.getElementById("slideBox").innerText =
-  "Slide Time: " + new Date().toLocaleTimeString();
-}, 2000);
-</script>
+
     body {
       margin: 0;
       font-family: Arial;
@@ -36,12 +30,11 @@ setInterval(() => {
     }
 
     .nav a {
-      color: green;
+      color: white;
       text-decoration: none;
       font-size: 14px;
     }
 
-    /* SECTIONS */
     section {
       padding: 60px 20px;
     }
@@ -69,21 +62,21 @@ setInterval(() => {
       cursor: pointer;
     }
 
-    /* SLIDES */
-    #slideBox {
-      background: #f1f1f1;
-      padding: 20px;
+    /* SLIDER */
+    #slideImg {
+      width: 300px;
+      height: 200px;
       border-radius: 10px;
-      min-height: 80px;
+      margin-top: 20px;
     }
 
     /* DASHBOARD */
     .box {
-      background: white;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 10px;
       display: inline-block;
+      background: #f1f1f1;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 10px;
       width: 150px;
     }
 
@@ -98,9 +91,8 @@ setInterval(() => {
   <a href="#problem">Problem</a>
   <a href="#solution">Solution</a>
   <a href="#features">Features</a>
-  <a href="#slides">Slides</a>
+  <a href="#gallery">Gallery</a>
   <a href="#dashboard">Dashboard</a>
-  <a href="#contact">Contact</a>
 </div>
 
 <!-- HOME -->
@@ -116,13 +108,13 @@ setInterval(() => {
 <!-- PROBLEM -->
 <section id="problem">
   <h2>Problem Statement</h2>
-  <p>Improper sanitation and hygiene issues affect public health in rural and urban areas.</p>
+  <p>Improper sanitation affects health in rural and urban areas.</p>
 </section>
 
 <!-- SOLUTION -->
 <section id="solution" style="background:#f1f1f1;">
   <h2>Solution</h2>
-  <p>IoT-based smart system for monitoring sanitation and improving hygiene conditions.</p>
+  <p>IoT-based smart monitoring system for hygiene improvement.</p>
 </section>
 
 <!-- FEATURES -->
@@ -131,14 +123,15 @@ setInterval(() => {
   <ul>
     <li>Real-time monitoring</li>
     <li>Low cost system</li>
-    <li>Alert notifications</li>
+    <li>Automatic alerts</li>
   </ul>
 </section>
 
-<!-- SLIDES -->
-<section id="slides" style="background:#e3f2fd;">
-  <h2>Project Highlights</h2>
-  <div id="slideBox">Loading...</div>
+<!-- GALLERY (IMAGE SLIDER) -->
+<section id="gallery" style="text-align:center; background:#e3f2fd;">
+  <h2>📸 Project Gallery</h2>
+
+  <img id="slideImg">
 </section>
 
 <!-- DASHBOARD -->
@@ -161,30 +154,29 @@ setInterval(() => {
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" style="background:#f1f1f1;">
-  <h2>Contact</h2>
-  <p>Email: example@gmail.com</p>
-</section>
-
 <script>
 
-let slides = [
-  "🚨 Problem: Sanitation issues affect health",
-  "💡 Solution: Smart IoT monitoring system",
-  "⚙️ Feature: Low cost & real-time alerts",
-  "📢 Awareness: Clean environment = Healthy life"
+html {
+  scroll-behavior: smooth;
+}
+
+/* IMAGE SLIDER */
+let images = [
+  "img1.jpg",
+  "img2.jpg",
+  "img3.jpg",
+  "img4.jpg"
 ];
 
 let i = 0;
 
-function showSlide() {
-  document.getElementById("slideBox").innerText = slides[i];
-  i = (i + 1) % slides.length;
+function changeImage() {
+  document.getElementById("slideImg").src = images[i];
+  i = (i + 1) % images.length;
 }
 
-setInterval(showSlide, 3000);
-showSlide();
+setInterval(changeImage, 2500);
+changeImage();
 
 /* USERS COUNTER */
 let u = 0;
@@ -193,7 +185,7 @@ setInterval(() => {
   document.getElementById("users").innerText = u;
 }, 2000);
 
-/* FEEDBACK DEMO COUNTER */
+/* FEEDBACK COUNTER */
 let f = 0;
 setInterval(() => {
   f++;
