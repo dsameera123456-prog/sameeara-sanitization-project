@@ -1,74 +1,161 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Smart Sanitation Project</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Sanitation MSME Project</title>
 
-  <style>
-    body { font-family: Arial; margin:0; }
-    section { padding:60px 20px; }
-    .nav {
-      position:fixed;
-      top:0;
-      width:100%;
-      background:#0d47a1;
-      display:flex;
-      justify-content:center;
-      gap:15px;
-      padding:10px;
-    }
-    .nav a { color:white; text-decoration:none; }
-    input, button { padding:10px; margin:5px; }
-  </style>
+<style>
+body { margin:0; font-family: Arial; }
+section { padding:60px 20px; }
+
+/* NAV */
+.nav {
+  position:fixed; top:0; width:100%;
+  background:#0d47a1;
+  display:flex; justify-content:center;
+  gap:15px; padding:10px;
+}
+.nav a { color:white; text-decoration:none; }
+
+/* HOME */
+#home {
+  height:100vh;
+  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+  url("img1.jpg") center/cover;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+/* SLIDER */
+.slider {
+  width:300px;
+  overflow:hidden;
+  margin:auto;
+}
+.slides {
+  display:flex;
+  transition:0.5s;
+}
+.slides img {
+  width:300px; height:200px;
+}
+
+/* BOX */
+.boxes {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.box {
+  width:150px;
+  margin:10px;
+  padding:20px;
+  background:#f1f1f1;
+  border-radius:10px;
+}
+
+/* INPUT */
+input, button {
+  padding:10px;
+  margin:5px;
+}
+</style>
 </head>
 
 <body>
 
 <!-- NAV -->
 <div class="nav">
-  <a href="#home">Home</a>
-  <a href="#login">Login</a>
-  <a href="#dashboard">Dashboard</a>
-  <a href="#feedback">Feedback</a>
+<a href="#home">Home</a>
+<a href="#login">Login</a>
+<a href="#slider">Gallery</a>
+<a href="#blocks">Features</a>
+<a href="#feedback">Feedback</a>
+<a href="#dashboard">Dashboard</a>
 </div>
 
 <!-- HOME -->
 <section id="home">
-  <h1>Smart Sanitation System</h1>
-  <p>CSP / MSME Project</p>
+<h1>Smart Sanitation System</h1>
+<p>CSP / MSME Project</p>
 </section>
 
-<!-- LOGIN -->
+<!-- LOGIN + LANGUAGE -->
 <section id="login">
-  <h2>Login / Guest</h2>
+<h2>Login / Guest</h2>
 
-  <input id="email" placeholder="Enter Email"><br>
+<input id="email" placeholder="Enter Email"><br>
 
-  <button onclick="emailLogin()">Login</button>
-  <button onclick="guestLogin()">Guest</button>
+<button onclick="loginEmail()">Login</button>
+<button onclick="guestLogin()">Guest</button>
 
-  <p id="status"></p>
+<h3>Language</h3>
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('te')">తెలుగు</button>
+
+<p id="status"></p>
 </section>
 
-<!-- DASHBOARD -->
-<section id="dashboard">
-  <h2>Live Dashboard</h2>
+<!-- SLIDER -->
+<section id="slider">
+<h2>Image Gallery</h2>
 
-  <p>👥 Users: <span id="users">0</span></p>
-  <p>💬 Feedback: <span id="fcount">0</span></p>
+<div class="slider">
+<div class="slides" id="slideBox">
+<img src="img1.jpg">
+<img src="img2.jpg">
+<img src="img3.jpg">
+<img src="img4.jpg">
+</div>
+</div>
+</section>
+
+<!-- FEATURES -->
+<section id="blocks">
+<h2>Features</h2>
+
+<div class="boxes">
+<div class="box">Images</div>
+<div class="box">Videos</div>
+<div class="box">Projects</div>
+<div class="box">Feedback</div>
+</div>
 </section>
 
 <!-- FEEDBACK -->
 <section id="feedback">
-  <h2>Feedback</h2>
+<h2>Feedback</h2>
 
-  <input id="name" placeholder="Name"><br>
-  <input id="msg" placeholder="Message"><br>
+<input id="name" placeholder="Name"><br>
+<input id="msg" placeholder="Message"><br>
 
-  <button onclick="sendFeedback()">Submit</button>
+<button onclick="sendFeedback()">Submit</button>
 </section>
 
-<!-- FIREBASE ONLY (IMPORTANT FIXED VERSION) -->
+<!-- DASHBOARD -->
+<section id="dashboard">
+<h2>Dashboard</h2>
+
+<p>Users: <span id="users">0</span></p>
+<p>Feedback: <span id="fcount">0</span></p>
+</section>
+
+<!-- HYGIENE -->
+<section>
+<h2>Awareness</h2>
+
+<ul>
+<li>Hand Sanitization 🧴</li>
+<li>Body Hygiene 🚿</li>
+<li>Menstrual Hygiene 🌸</li>
+<li>Clean Environment 🏡</li>
+</ul>
+</section>
+
+<!-- FIREBASE -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
@@ -76,66 +163,77 @@ import { getFirestore, collection, addDoc, onSnapshot }
 from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC0Jos76V8Vot3AYEAubJ7Tg04EOFywFQ0",
-  authDomain: "smart-sanitization-project.firebaseapp.com",
-  projectId: "smart-sanitization-project",
-  storageBucket: "smart-sanitization-project.firebasestorage.app",
-  messagingSenderId: "724851096201",
-  appId: "1:724851096201:web:1bfb0f90595382d9982458"
+apiKey: "AIzaSyC0Jos76V8Vot3AYEAubJ7Tg04EOFywFQ0",
+authDomain: "smart-sanitization-project.firebaseapp.com",
+projectId: "smart-sanitization-project",
+storageBucket: "smart-sanitization-project.firebasestorage.app",
+messagingSenderId: "724851096201",
+appId: "1:724851096201:web:1bfb0f90595382d9982458"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 /* LOGIN */
-window.emailLogin = async function() {
-  let email = document.getElementById("email").value;
-  if(!email) return alert("Enter email");
+window.loginEmail = async function() {
+let email = document.getElementById("email").value;
+if(!email) return alert("Enter email");
 
-  await addDoc(collection(db, "users"), {
-    type: "email",
-    email: email,
-    time: new Date()
-  });
+await addDoc(collection(db,"users"),{
+type:"email",
+email,
+time:new Date()
+});
 
-  document.getElementById("status").innerText = "Logged in: " + email;
+document.getElementById("status").innerText="Logged in: "+email;
 }
 
 /* GUEST */
 window.guestLogin = async function() {
-  await addDoc(collection(db, "users"), {
-    type: "guest",
-    email: "guest",
-    time: new Date()
-  });
+await addDoc(collection(db,"users"),{
+type:"guest",
+email:"guest",
+time:new Date()
+});
 
-  document.getElementById("status").innerText = "Guest login success";
+document.getElementById("status").innerText="Guest login";
+}
+
+/* LANGUAGE */
+window.setLang = function(l) {
+if(l=="en") document.getElementById("status").innerText="Language: English";
+else document.getElementById("status").innerText="భాష: తెలుగు";
 }
 
 /* FEEDBACK */
 window.sendFeedback = async function() {
-  let name = document.getElementById("name").value;
-  let msg = document.getElementById("msg").value;
+let name=document.getElementById("name").value;
+let msg=document.getElementById("msg").value;
 
-  if(!name || !msg) return alert("Fill all fields");
+if(!name||!msg) return alert("Fill all");
 
-  await addDoc(collection(db, "feedback"), {
-    name,
-    msg,
-    time: new Date()
-  });
-
-  alert("Feedback sent!");
+await addDoc(collection(db,"feedback"),{
+name,msg,time:new Date()
+});
 }
 
-/* LIVE COUNTS */
-onSnapshot(collection(db, "users"), (snap) => {
-  document.getElementById("users").innerText = snap.size;
+/* COUNTS */
+onSnapshot(collection(db,"users"),snap=>{
+document.getElementById("users").innerText=snap.size;
 });
 
-onSnapshot(collection(db, "feedback"), (snap) => {
-  document.getElementById("fcount").innerText = snap.size;
+onSnapshot(collection(db,"feedback"),snap=>{
+document.getElementById("fcount").innerText=snap.size;
 });
+
+/* SLIDER AUTO MOVE */
+let i=0;
+setInterval(()=>{
+let box=document.getElementById("slideBox");
+i++;
+if(i>3) i=0;
+box.style.transform="translateX(" + (-300*i) + "px)";
+},2000);
 
 </script>
 
